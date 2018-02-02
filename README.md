@@ -24,7 +24,9 @@ WARNING: Don't put your hands in the propeller when you run this, who knows what
 
 ## Known Issues:
 -Starting a second instance of the program may cause the program to crash (WILL NOT FIX)
+
 -Scaling has issues, disabled maximizing the window (WILL NOT FIX)
+
 -Force-killing the GUI will leave leftover threads running, this may bog down your computer, use the GUI button
 
 
