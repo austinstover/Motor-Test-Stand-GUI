@@ -1,4 +1,6 @@
-# Instructions:
+# Motor-Test-Stand-GUI
+
+## Instructions:
 
 Running the program is as easy as double-clicking the shortcut.
 
@@ -20,21 +22,21 @@ WARNING: Don't put your hands in the propeller when you run this, who knows what
 	 we take no responsibility for injuries, use at your own risk.
 
 
-# Known Issues:
+## Known Issues:
 -Starting a second instance of the program may cause the program to crash (WILL NOT FIX)
 -Scaling has issues, disabled maximizing the window (WILL NOT FIX)
 -Force-killing the GUI will leave leftover threads running, this may bog down your computer, use the GUI button
 
 
-#Compiling:
+## Compiling:
 
 The source code is included.
 To compile the code using py2exe, simply run compile.bat
 
-# Dependencies (needed to compile):
+## Dependencies (needed to compile):
 -Python 2.7
 -matplotlib
 -tkinter
 -pySerial
 -numpy
--py2exe
+-py2exe (for compiling to exe, optional)
