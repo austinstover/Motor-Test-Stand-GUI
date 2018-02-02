@@ -35,12 +35,18 @@ WARNING: Don't put your hands in the propeller when you run this, who knows what
 ## Compiling:
 
 The source code is included.
+
 To compile the code using py2exe, simply run compile.bat
 
 ## Dependencies (needed to compile):
 -Python 2.7
+
 -matplotlib
+
 -tkinter
+
 -pySerial
+
 -numpy
+
 -py2exe (for compiling to exe, optional)
