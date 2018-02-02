@@ -1,6 +1,6 @@
 # Motor-Test-Stand-GUI
 
-### Warning: This software is provided uncompiled to avoid issues regarding licensing and as such will require the dependencies listed below to run as intended. All libraries required are available for free through pip or online through their respective webpages.
+### Note: This software is provided uncompiled to avoid issues regarding licensing and as such will require the dependencies listed below to run as intended. All libraries required are available for free through pip or online through their respective webpages.
 
 ## Instructions:
 
