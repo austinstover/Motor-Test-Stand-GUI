@@ -1,0 +1,1 @@
+start "" "..\dist\Control Panel.exe"

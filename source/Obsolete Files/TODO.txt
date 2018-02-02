@@ -1,0 +1,4 @@
+TODO:
+-Code arduino-side software
+-implement serial communication (set up a standard for communication between arduino and computer)
+-actually have graphs display the data

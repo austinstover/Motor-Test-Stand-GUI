@@ -1,0 +1,14 @@
+EDIT: you can now use the .exe file, just run that if you are on Windows
+
+INSTRUCTIONS (for running the script on its own):
+Use Pip to install dependencies (google "python pip" if you don't know how, or I guess you can email me, christophe.aa.foyer@gmail.com)
+Dependencies (if there are any more it should tell you in the error message):
+-Python 2.7 (or any 2.x version is likely to work)
+-matplotlib
+-tkinter
+-pySerial
+-numpy
+
+run the "control panel.py"
+
+Don't do anything too funky please, robustness is not guarenteed as of yet.
