@@ -1,5 +1,7 @@
 # Motor-Test-Stand-GUI
 
+### Warning: This software is provided uncompiled to avoid issues regarding licensing and as such will require the dependencies listed below to run as intended.
+
 ## Instructions:
 
 Running the program is as easy as double-clicking the shortcut.
