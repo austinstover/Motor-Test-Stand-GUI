@@ -466,7 +466,6 @@ class mSim(Frame):
             self.logButton.configure(text = 'Stop Data Logging')
             self.logButton.configure(bg = 'orange')
             self.logstate.set(True)
-            self.loggedData = []
 
 
 if __name__ == '__main__':
