@@ -67,6 +67,7 @@ class mSim(Frame):
         #create variables
         self.startmotor = BooleanVar()
         self.logstate = BooleanVar()
+        self.loggedData = []
         self.throttlevar = StringVar()
         self.throttleval = IntVar()
 
@@ -124,6 +125,7 @@ class mSim(Frame):
         self.parent.after(self.PERIOD_LENGTH_Scan, self.runScan)
 
     def runLog(self):
+        #this will probably not work since you're not appending to 
         if (self.logstate.get() == True) and (self.serialStatus == True): #logging data                                        
                     data = dict(zip(*[self.SC.dict.keys(), zip(*self.SC.dict.values())[-1]])) 
                     if 'l' not in locals():         # a dictionary with a deque of the recent data for each message type -Austin
@@ -131,8 +133,8 @@ class mSim(Frame):
                     if self.loggedData == []: #if empty add titles
                         l=[data.keys()]
                     data = data.values()
-                    l.append(data)
-                    self.loggedData = l #this is an array (that way I don't have to change my csv code)
+                    
+                    self.loggedData.append(data)
                     
         self.parent.after(self.PERIOD_LENGTH_Log, self.runLog)
 
