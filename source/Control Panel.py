@@ -42,8 +42,7 @@ def main():
 
     root = Tk()
     
-    #what even is this? ugh I'm so gonna have to recode this next year
-    app = mSim(root)
+    mSim(root)
     
     root.resizable(0,0) #This removes the maximize button (was causing issues with scaling, not ideal)
     root.iconbitmap('favicon.ico') #favicon (so pretty)
