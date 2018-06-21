@@ -13,8 +13,8 @@
 ####################
 
 import Tkinter as tk
-from Tkinter import Tk, BOTH, OptionMenu, IntVar, LEFT, Canvas, Frame, W, X, N, Y, BooleanVar, StringVar
-from ttk import Frame, Button, Style, Label, Scale, Checkbutton, Entry
+from Tkinter import Tk, BOTH, OptionMenu, IntVar, LEFT, X, BooleanVar, StringVar
+from ttk import Button, Frame, Style, Label, Scale, Checkbutton, Entry
 import tkMessageBox as messagebox
 
 import serial
@@ -22,19 +22,18 @@ import csv
 
 import matplotlib
 matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 
-from threading import Thread
-from multiprocessing import Queue
+#from threading import Thread
+#from multiprocessing import Queue
 
-import time
+#import time
 import sys
 import glob
 
 #import Austin's script
 from SerialComm.SerialComm import SerialComm
-from collections import deque
 
 def main():
 
@@ -42,7 +41,10 @@ def main():
     print "Displaying GUI"
 
     root = Tk()
+    
+    #what even is this? ugh I'm so gonna have to recode this next year
     app = mSim(root)
+    
     root.resizable(0,0) #This removes the maximize button (was causing issues with scaling, not ideal)
     root.iconbitmap('favicon.ico') #favicon (so pretty)
 
@@ -87,6 +89,8 @@ class mSim(Frame):
         self.parent.after(0, self.runLog)
         self.parent.after(0, self.runRefresh)
         
+        with open('data.csv', 'a'):
+            pass
 
     def runScan(self):
         #serial port scanning function
@@ -179,8 +183,8 @@ class mSim(Frame):
 
     def centerWindow(self):
       
-        w = 800 #eh, who needs scaling anyways
-        h = 500
+        w = 900 #eh, who needs scaling anyways
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -441,7 +445,7 @@ class mSim(Frame):
         else:
             if messagebox.askokcancel("Save", "This will overwrite any data.csv file in the directory. Save anyways?"):
                 l = self.loggedData
-                with open('data.csv', 'wb') as f:
+                with open('data.csv', 'a') as f:
                    wtr = csv.writer(f, delimiter= ',')
                    wtr.writerows( l )
                 self.parent.after(2)
@@ -452,8 +456,9 @@ class mSim(Frame):
         print "Updating motor values"
         self.textboxvar.set("Updating motor values")
         try:
-            sendMaxCurrent(self.MaxA_Entry.get())
-            sendMaxVoltage(self.MaxV_Entry.get())
+#            sendMaxCurrent(self.MaxA_Entry.get())
+#            sendMaxVoltage(self.MaxV_Entry.get())
+            pass
         except:
             self.textboxvar.set("Something went wrong, is serial connected?")
 
