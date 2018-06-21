@@ -88,9 +88,6 @@ class mSim(Frame):
         self.parent.after(0, self.runScan)
         self.parent.after(0, self.runLog)
         self.parent.after(0, self.runRefresh)
-        
-        with open('data.csv', 'a'):
-            pass
 
     def runScan(self):
         #serial port scanning function
@@ -445,6 +442,8 @@ class mSim(Frame):
         else:
             if messagebox.askokcancel("Save", "This will overwrite any data.csv file in the directory. Save anyways?"):
                 l = self.loggedData
+                with open('data.csv', 'wb'):
+                    pass
                 with open('data.csv', 'a') as f:
                    wtr = csv.writer(f, delimiter= ',')
                    wtr.writerows( l )
