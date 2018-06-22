@@ -13,8 +13,8 @@
 ####################
 
 import Tkinter as tk
-from Tkinter import Tk, BOTH, OptionMenu, IntVar, LEFT, Canvas, Frame, W, X, N, Y, BooleanVar, StringVar
-from ttk import Frame, Button, Style, Label, Scale, Checkbutton, Entry
+from Tkinter import Tk, BOTH, OptionMenu, IntVar, LEFT, X, BooleanVar, StringVar
+from ttk import Button, Frame, Style, Label, Scale, Checkbutton, Entry
 import tkMessageBox as messagebox
 
 import serial
@@ -22,19 +22,18 @@ import csv
 
 import matplotlib
 matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 
-from threading import Thread
-from multiprocessing import Queue
+#from threading import Thread
+#from multiprocessing import Queue
 
-import time
+#import time
 import sys
 import glob
 
 #import Austin's script
 from SerialComm.SerialComm import SerialComm
-from collections import deque
 
 def main():
 
@@ -42,7 +41,9 @@ def main():
     print "Displaying GUI"
 
     root = Tk()
-    app = mSim(root)
+    
+    mSim(root)
+    
     root.resizable(0,0) #This removes the maximize button (was causing issues with scaling, not ideal)
     root.iconbitmap('favicon.ico') #favicon (so pretty)
 
@@ -66,6 +67,7 @@ class mSim(Frame):
         #create variables
         self.startmotor = BooleanVar()
         self.logstate = BooleanVar()
+        self.loggedData = []
         self.throttlevar = StringVar()
         self.throttleval = IntVar()
 
@@ -86,7 +88,6 @@ class mSim(Frame):
         self.parent.after(0, self.runScan)
         self.parent.after(0, self.runLog)
         self.parent.after(0, self.runRefresh)
-        
 
     def runScan(self):
         #serial port scanning function
@@ -124,6 +125,7 @@ class mSim(Frame):
         self.parent.after(self.PERIOD_LENGTH_Scan, self.runScan)
 
     def runLog(self):
+        #this will probably not work since you're not appending to 
         if (self.logstate.get() == True) and (self.serialStatus == True): #logging data                                        
                     data = dict(zip(*[self.SC.dict.keys(), zip(*self.SC.dict.values())[-1]])) 
                     if 'l' not in locals():         # a dictionary with a deque of the recent data for each message type -Austin
@@ -131,8 +133,8 @@ class mSim(Frame):
                     if self.loggedData == []: #if empty add titles
                         l=[data.keys()]
                     data = data.values()
-                    l.append(data)
-                    self.loggedData = l #this is an array (that way I don't have to change my csv code)
+                    
+                    self.loggedData.append(data)
                     
         self.parent.after(self.PERIOD_LENGTH_Log, self.runLog)
 
@@ -179,8 +181,8 @@ class mSim(Frame):
 
     def centerWindow(self):
       
-        w = 800 #eh, who needs scaling anyways
-        h = 500
+        w = 900 #eh, who needs scaling anyways
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -441,7 +443,9 @@ class mSim(Frame):
         else:
             if messagebox.askokcancel("Save", "This will overwrite any data.csv file in the directory. Save anyways?"):
                 l = self.loggedData
-                with open('data.csv', 'wb') as f:
+                with open('data.csv', 'wb'):
+                    pass
+                with open('data.csv', 'a') as f:
                    wtr = csv.writer(f, delimiter= ',')
                    wtr.writerows( l )
                 self.parent.after(2)
@@ -452,8 +456,9 @@ class mSim(Frame):
         print "Updating motor values"
         self.textboxvar.set("Updating motor values")
         try:
-            sendMaxCurrent(self.MaxA_Entry.get())
-            sendMaxVoltage(self.MaxV_Entry.get())
+#            sendMaxCurrent(self.MaxA_Entry.get())
+#            sendMaxVoltage(self.MaxV_Entry.get())
+            pass
         except:
             self.textboxvar.set("Something went wrong, is serial connected?")
 
